@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureNet | Penetration Testing Simulation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Particles Background for Login Page -->
+    <canvas id="particlesCanvasLogin" class="particles-bg"></canvas>
+    
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <form class="login-form slide-in">
+            <div class="login-header">
+                <h1><i class="fas fa-shield-alt"></i> SecureNet</h1>
+                <p>Penetration Testing Simulation Portal</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <i class="fas fa-user"></i>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            
+            <div class="captcha-container">
+                <div id="captchaDisplay"></div>
+                <button type="button" id="refreshCaptcha" class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <input type="text" id="captcha" placeholder="Enter CAPTCHA" required>
+            </div>
+            
+            <button type="submit" class="btn" id="loginBtn">Login</button>
+            
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+            
+            <div class="login-footer">
+                <p>SecureNet &copy; 2025. All rights reserved.</p>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboardPage">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="dashboard-logo">
+                    <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary);"></i>
+                    <h1>SecureNet</h1>
+                </div>
+                
+                <div class="user-controls">
+                    <button id="soundToggle" class="sound-toggle">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-name">Administrator</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote-container fade-in">
+                <div class="quote-text" id="quoteText">
+                    "The best way to defend is to know how to attack."
+                </div>
+                <div class="quote-author" id="quoteAuthor">- Cybersecurity Principle</div>
+            </div>
+            
+            <div class="alert-banner fade-in">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="alert-message">
+                    <div class="alert-title">Security Alert</div>
+                    <p>Multiple unauthorized access attempts detected from IP range 192.168.1.1. Enhanced monitoring activated.</p>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats slide-in">
+                <div class="stat-card">
+                    <div class="stat-value">27</div>
+                    <div class="stat-label">Active Targets</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Security Vulnerabilities</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Compromised Systems</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">89%</div>
+                    <div class="stat-label">Security Score</div>
+                </div>
+            </div>
+            
+            <div class="targets-section slide-in">
+                <h2 class="section-title"><i class="fas fa-crosshairs"></i> Target Systems</h2>
+                
+                <div class="target-grid">
+                    <div class="target-card tilt-effect" data-target="server1">
+                        <div class="target-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="target-name">AWS Production Server</div>
+                        <div class="target-status status-online">ONLINE</div>
+                        <div class="target-info">IP: 172.31.18.42</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                    
+                    <div class="target-card tilt-effect" data-target="server2">
+                        <div class="target-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="target-name">SQL Database Cluster</div>
+                        <div class="target-status status-vulnerable">VULNERABLE</div>
+                        <div class="target-info">IP: 10.0.14.88</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                    
+                    <div class="target-card tilt-effect" data-target="server3">
+                        <div class="target-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="target-name">Network Gateway</div>
+                        <div class="target-status status-compromised">COMPROMISED</div>
+                        <div class="target-info">IP: 192.168.1.1</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                    
+                    <div class="target-card tilt-effect" data-target="server4">
+                        <div class="target-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="target-name">Web Application</div>
+                        <div class="target-status status-vulnerable">VULNERABLE</div>
+                        <div class="target-info">URL: app.target.com</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                    
+                    <div class="target-card tilt-effect" data-target="server5">
+                        <div class="target-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="target-name">Security Appliance</div>
+                        <div class="target-status status-online">ONLINE</div>
+                        <div class="target-info">IP: 10.10.10.254</div>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-footer">
+                <p>SecureNet Penetration Testing Platform &copy; 2025. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <!-- Matrix Background -->
+        <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+        <!-- Particles Background for Dashboard Page -->
+        <canvas id="particlesCanvasDashboard" class="particles-bg"></canvas>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2><i class="fas fa-user-shield"></i> Administrator Profile</h2>
+            <button class="close-btn" id="closeAdminPanel"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="admin-content">
+            <div class="admin-info">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="admin-details">
+                    <h3>System Administrator</h3>
+                    <p class="admin-role">Root Access</p>
+                    <p><i class="fas fa-id-badge"></i> ID: SEC-ADMIN-007</p>
+                    <p><i class="fas fa-clock"></i> Last Login: Today, 09:45 AM</p>
+                </div>
+            </div>
+            
+            <div class="admin-actions">
+                <button class="admin-btn" data-requires-auth="true" data-action="viewLogs">
+                    <i class="fas fa-clipboard-list"></i> Security Logs
+                </button>
+                <button class="admin-btn" data-requires-auth="true" data-action="configSystem">
+                    <i class="fas fa-cogs"></i> System Configuration
+                </button>
+                <button class="admin-btn" data-requires-auth="true" data-action="manageUsers">
+                    <i class="fas fa-users-cog"></i> User Management
+                </button>
+                <button class="admin-btn" data-action="help">
+                    <i class="fas fa-question-circle"></i> Help
+                </button>
+                <button class="admin-btn danger-btn" data-action="logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Password Verification Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <h3><i class="fas fa-lock"></i> Authentication Required</h3>
+            <p>Please enter administrator password to continue:</p>
+            
+            <input type="password" id="authPassword" placeholder="Enter password">
+            
+            <div class="modal-buttons">
+                <button id="cancelAuth" class="cancel-btn">Cancel</button>
+                <button id="submitAuth" class="confirm-btn">Authenticate</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Robot Verification Page -->
+    <div class="verification-container" id="verificationPage">
+        <div class="verification-content slide-in">
+            <div class="verification-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            
+            <h2 class="verification-title">Verifying you are not a robot</h2>
+            <p class="verification-message">Please wait while we establish a secure connection...</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="verification-steps">
+                <div class="verification-step" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Initializing connection...</div>
+                </div>
+                
+                <div class="verification-step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Verifying identity...</div>
+                </div>
+                
+                <div class="verification-step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Establishing secure tunnel...</div>
+                </div>
+                
+                <div class="verification-step" id="step4">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Connecting to target...</div>
+                </div>
+            </div>
+            
+            <p class="terminal-text" id="terminalText"></p>
+        </div>
+    </div>
+    
+    <!-- Connected Success Page -->
+    <div class="connected-container" id="connectedPage">
+        <div class="connected-content slide-in">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h2 class="connected-title">Connection Successful!</h2>
+            <p class="connected-message">You have successfully connected to <span id="targetName">Target System</span></p>
+            
+            <div class="data-list">
+                <p>> Connection established to <span id="targetIP">0.0.0.0</span></p>
+                <p>> Access level: Administrator</p>
+                <p>> Latency: 42ms</p>
+                <p>> Encryption: AES-256</p>
+                <p>> Session ID: SEC-<span id="sessionId">0000000</span></p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="go-back-btn" id="goBackBtn">Return to Dashboard</button>
+                <button class="scan-btn" id="startScanBtn">Start Vulnerability Testing</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scanning Simulation Page -->
+    <div class="scanning-container" id="scanningPage">
+        <div class="scanning-content">
+            <div class="scanning-header">
+                <h2><i class="fas fa-search"></i> Scanning Target: <span id="scanTargetName">Target System</span></h2>
+                <div class="scanning-info">
+                    <p>IP: <span id="scanTargetIP">0.0.0.0</span></p>
+                    <p>Session ID: SEC-<span id="scanSessionId">0000000</span></p>
+                    <p>Elapsed Time: <span id="elapsedTime">00:00</span></p>
+                </div>
+            </div>
+            
+            <div class="scanning-view-selector">
+                <button class="view-btn active" data-view="terminal">Terminal View</button>
+                <button class="view-btn" data-view="dashboard">Dashboard View</button>
+            </div>
+            
+            <!-- Terminal View -->
+            <div class="terminal-view" id="terminalView">
+                <div class="terminal-output" id="terminalOutput"></div>
+                <div class="terminal-progress">
+                    <div class="progress-text">Scan Progress: <span id="terminalProgress">0</span>%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="terminalProgressBar"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dashboard View -->
+            <div class="dashboard-view" id="dashboardView" style="display: none;">
+                <div class="scan-stats">
+                    <div class="scan-stat">
+                        <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="stat-value" id="portsScanned">0</div>
+                        <div class="stat-label">Ports Scanned</div>
+                    </div>
+                    <div class="scan-stat">
+                        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="stat-value" id="vulnerabilitiesFound">0</div>
+                        <div class="stat-label">Vulnerabilities</div>
+                    </div>
+                    <div class="scan-stat">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-value" id="timeRemaining">01:00</div>
+                        <div class="stat-label">Time Remaining</div>
+                    </div>
+                </div>
+                
+                <div class="scan-graphs">
+                    <div class="graph-container">
+                        <h3>Network Activity</h3>
+                        <canvas id="networkGraph"></canvas>
+                    </div>
+                    <div class="graph-container">
+                        <h3>CPU Usage</h3>
+                        <canvas id="cpuGraph"></canvas>
+                    </div>
+                </div>
+                
+                <div class="scan-progress">
+                    <div class="progress-text">Scan Progress: <span id="dashboardProgress">0</span>%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="dashboardProgressBar"></div>
+                    </div>
+                </div>
+                
+                <div class="live-logs">
+                    <h3>Scan Logs</h3>
+                    <div class="logs-container" id="dashboardLogs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Security Report Page -->
+    <div class="report-container" id="reportPage">
+        <div class="report-content">
+            <div class="report-header">
+                <h2><i class="fas fa-file-alt"></i> Security Report: <span id="reportTargetName">Target System</span></h2>
+                <div class="report-info">
+                    <p>IP: <span id="reportTargetIP">0.0.0.0</span></p>
+                    <p>Scan Date: <span id="scanDate">2025-01-01</span></p>
+                    <p>Duration: <span id="scanDuration">00:01:24</span></p>
+                </div>
+            </div>
+            
+            <div class="report-summary">
+                <div class="summary-card critical">
+                    <div class="summary-value" id="criticalCount">0</div>
+                    <div class="summary-label">Critical</div>
+                </div>
+                <div class="summary-card high">
+                    <div class="summary-value" id="highCount">0</div>
+                    <div class="summary-label">High</div>
+                </div>
+                <div class="summary-card medium">
+                    <div class="summary-value" id="mediumCount">0</div>
+                    <div class="summary-label">Medium</div>
+                </div>
+                <div class="summary-card low">
+                    <div class="summary-value" id="lowCount">0</div>
+                    <div class="summary-label">Low</div>
+                </div>
+                <div class="summary-card info">
+                    <div class="summary-value" id="infoCount">0</div>
+                    <div class="summary-label">Info</div>
+                </div>
+            </div>
+            
+            <div class="report-view-selector">
+                <button class="view-btn active" data-view="list">List View</button>
+                <button class="view-btn" data-view="cards">Cards View</button>
+            </div>
+            
+            <!-- List View -->
+            <div class="list-view" id="listView">
+                <div class="vulnerability-table">
+                    <div class="table-header">
+                        <div class="header-item">Severity</div>
+                        <div class="header-item">Vulnerability</div>
+                        <div class="header-item">Location</div>
+                        <div class="header-item">Details</div>
+                    </div>
+                    <div class="table-body" id="vulnerabilityList"></div>
+                </div>
+            </div>
+            
+            <!-- Cards View -->
+            <div class="cards-view" id="cardsView" style="display: none;">
+                <div class="vulnerability-cards" id="vulnerabilityCards"></div>
+            </div>
+            
+            <div class="report-actions">
+                <button class="export-btn" id="exportPdfBtn"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                <button class="export-btn" id="exportCsvBtn"><i class="fas fa-file-csv"></i> Export CSV</button>
+                <button class="back-btn" id="backToDashboardBtn"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="securenet.js"></script>
+</body>
+</html>
